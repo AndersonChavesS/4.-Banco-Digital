@@ -15,8 +15,12 @@ public class Main {
         int opcao = teclado.nextInt();
         teclado.nextLine(); // Consumir a nova linha
         if (opcao == 1) {
+            System.out.println("Digite o nome do Titular da conta:");
+            String nomeTitular = teclado.nextLine();
+            Cliente cliente = new Cliente();
+            cliente.setNome(nomeTitular);
+            Conta contaCorrente = new ContaCorrente(cliente);
             System.out.println("Criando Conta Corrente...");
-            Conta contaCorrente = new ContaCorrente();
             do {
                 System.out.println("Para Depositar, digite 1 \nPara Sacar, digite 2\nPara Transferir, digite 3\nPara Imprimir Extrato, digite 4\nPara Sair, digite 5");
                 int acao = teclado.nextInt();
@@ -33,7 +37,7 @@ public class Main {
                 } else if (acao == 3) {
                     System.out.println("Digite o valor a ser transferido:");
                     double valorTransferencia = teclado.nextDouble();
-                    Conta contaDestino = new ContaPoupanca();
+                    Conta contaDestino = new ContaPoupanca(cliente);
                     contaCorrente.transferir(valorTransferencia, contaDestino);
                 } else if (acao == 4) {
                     contaCorrente.imprimirExtrato();
@@ -47,8 +51,12 @@ public class Main {
 
 
         } else if (opcao == 2) {
+            System.out.println("Digite o nome do Titular da conta:");
+            String nomeTitular = teclado.nextLine();
+            Cliente cliente = new Cliente();
+            cliente.setNome(nomeTitular);
+            Conta contaPoupanca = new ContaPoupanca(cliente);
             System.out.println("Criando Conta Poupança...");
-            Conta contaPoupanca = new ContaPoupanca();
 
             do {
                 System.out.println("Para Depositar, digite 1 \nPara Sacar, digite 2\nPara Transferir, digite 3\nPara Imprimir Extrato, digite 4\nPara Sair, digite 5");
@@ -67,7 +75,7 @@ public class Main {
                     System.out.println("Digite o valor a ser transferido:");
                     double valorTransferencia = teclado.nextDouble();
                     int numeroContaDestino = teclado.nextInt();
-                    Conta contaDestino = new ContaPoupanca();
+                    Conta contaDestino = new ContaPoupanca(cliente);
                     contaPoupanca.transferir(valorTransferencia, contaDestino);
                 } else if (acao == 4) {
                     contaPoupanca.imprimirExtrato();

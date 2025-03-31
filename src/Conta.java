@@ -8,10 +8,11 @@ public abstract class Conta implements IConta {
     protected Cliente cliente;
     protected Banco banco;
 
-    public Conta() {
+    public Conta(Cliente cliente) {
         this.agencia = AGENCIA_PADRAO;
         this.numeroConta = SEQUENCIAL++;
         this.saldo = 0.0;
+        this.cliente = cliente;
     }
 
     // Implementações dos métodos de IConta
@@ -54,6 +55,7 @@ public abstract class Conta implements IConta {
     }
 
     protected void imprimirInformacoesExtrato() {
+        System.out.println(String.format("Titular: %s", this.cliente.getNome()));
         System.out.println(String.format("Agência: %s", this.agencia));
         System.out.println(String.format("Número da Conta: %s", this.numeroConta));
         System.out.println(String.format("Saldo: %.2f", this.saldo));
